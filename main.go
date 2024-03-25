@@ -2,9 +2,14 @@ package main
 
 import (
 	"github.com/run100/go_module_test/router"
+	"github.com/run100/go_module_test/utils"
 )
 
 func main() {
+
+	utils.InitConfig()
+	utils.InitMysql()
+
 	r := router.Router()
 	//r := gin.Default()
 	//r.GET("/ping", func(c *gin.Context) {
