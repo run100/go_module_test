@@ -55,4 +55,5 @@ func InitRedis() {
 		PoolSize:     viper.GetInt("redis.poolSize"),
 		MinIdleConns: viper.GetInt("redis.minIdleConn"),
 	})
+	fmt.Println(" InitRedis inited 。。。。\n")
 }
