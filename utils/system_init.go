@@ -35,9 +35,12 @@ func InitMysql() {
 		},
 	)
 
-	dsn := viper.GetString("mysql.dsn")
-	DB, _ := gorm.Open(mysql.Open(dsn), &gorm.Config{Logger: newLogger})
+	DB, _ = gorm.Open(mysql.Open(viper.GetString("mysql.dsn")), &gorm.Config{Logger: newLogger})
 
 	fmt.Println(" MySQL inited 。。。。\n")
 	fmt.Printf("db=>%v \n", DB)
+
+	//user := models.UserBasic{}
+	//DB.Find(&user)
+	//fmt.Println(user)
 }

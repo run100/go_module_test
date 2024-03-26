@@ -1,6 +1,8 @@
 package models
 
 import (
+	"fmt"
+	"github.com/run100/go_module_test/utils"
 	"gorm.io/gorm"
 	"time"
 )
@@ -25,4 +27,15 @@ type UserBasic struct {
 
 func (table *UserBasic) TableName() string {
 	return "user_basic"
+}
+
+func GetUserList() []*UserBasic {
+	data := make([]*UserBasic, 10)
+	utils.DB.Find(&data)
+
+	for _, row := range data {
+		fmt.Printf("row %v\n", row)
+	}
+
+	return data
 }
