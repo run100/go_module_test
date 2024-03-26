@@ -1,7 +1,6 @@
 package models
 
 import (
-	"fmt"
 	"github.com/run100/go_module_test/utils"
 	"gorm.io/gorm"
 	"time"
@@ -33,9 +32,19 @@ func GetUserList() []*UserBasic {
 	data := make([]*UserBasic, 10)
 	utils.DB.Find(&data)
 
-	for _, row := range data {
-		fmt.Printf("row %v\n", row)
-	}
+	//for _, row := range data {
+	//	fmt.Printf("row %v\n", row)
+	//}
 
 	return data
+}
+
+func FindUserByName(name string) UserBasic {
+	user := UserBasic{}
+	utils.DB.Where("name = ?", name).First(&user)
+	return user
+}
+
+func CreateUser(user UserBasic) *gorm.DB {
+	return utils.DB.Create(&user)
 }
