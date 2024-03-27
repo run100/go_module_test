@@ -92,7 +92,7 @@ func Chat(writer http.ResponseWriter, request *http.Request) {
 	//6.完成接受逻辑
 	go recvProc(node)
 
-	sendMsg(userId, []byte("欢迎进入聊天系统"))
+	//sendMsg(userId, []byte("欢迎进入聊天系统"))
 }
 
 func sendProc(node *Node) {
@@ -128,7 +128,7 @@ func recvProc(node *Node) {
 		//} else {
 		dispatch(data)
 		//	broadMsg(data) //todo 将消息广播到局域网
-		//	fmt.Println("[ws] recvProc <<<<< ", string(data))
+		fmt.Println("[ws] recvProc <<<<< ", string(data))
 		//}
 
 	}
@@ -162,6 +162,7 @@ func sendMsg(userId int64, msg []byte) {
 	rwLocker.RUnlock()
 
 	if ok {
+		fmt.Println("sendMsg >>> userID: ", userId, "  msg:", string(msg))
 		node.DataQueue <- msg
 	}
 
