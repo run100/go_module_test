@@ -22,6 +22,7 @@ func Router() *gin.Engine {
 	r.LoadHTMLGlob("views/**/*")
 
 	r.GET("/", service.GetIndex)
+	r.GET("/toRegister", service.ToRegister)
 
 	//用户模块
 	r.GET("/user/getUserList", service.GetUserList)
