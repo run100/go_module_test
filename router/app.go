@@ -17,6 +17,9 @@ func Router() *gin.Engine {
 
 	//静态资源
 	r.Static("/asset", "asset/")
+	r.StaticFile("/favicon.ico", "asset/images/favicon.ico")
+	//	r.StaticFS()
+	r.LoadHTMLGlob("views/**/*")
 
 	r.GET("/", service.GetIndex)
 
