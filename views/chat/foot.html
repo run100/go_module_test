@@ -263,7 +263,7 @@
                     }
                 },
                 showweixin: function () {
-                    mui.alert("请加微信号msb-shenzhuan索取")
+                    mui.alert("111")
                 },
                 showmsg: function (user, msg, isReverse, isFirst) {
                     //console.log(">>>>>>>>>>>", user)
@@ -475,6 +475,7 @@
                     }
                     //出错回调
                     this.webSocket.onerror = function (evt) {
+                        console.log("出错回调")
                         console.log(evt.data)
                     }
                     /*{
