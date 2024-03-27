@@ -16,14 +16,14 @@ func main() {
 
 	fmt.Printf("%v, %v\n", db, err)
 
-	//db.AutoMigrate(&models.UserBasic{})
+	db.AutoMigrate(&models.GroupBasic{})
 
-	user := &models.UserBasic{}
+	//user := &models.UserBasic{}
 	//user.Name = "逍遥"
 	//db.Create(user)
 
-	fmt.Println(db.First(user, 1))
-
-	db.Model(user).Update("name", "333")
+	//fmt.Println(db.First(user, 1))
+	//
+	//db.Model(user).Update("name", "333")
 
 }
