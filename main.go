@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"github.com/run100/go_module_test/router"
 	"github.com/run100/go_module_test/utils"
 )
@@ -9,7 +10,9 @@ func main() {
 
 	utils.InitConfig()
 	utils.InitMysql()
-	utils.InitRedis()
+
+	ctx := context.Background()
+	utils.InitRedis(ctx)
 
 	r := router.Router()
 	//r := gin.Default()

@@ -4,6 +4,6 @@ mysql:
 redis:
   addr: "127.0.0.1:6379"
   password: ""
-  DB: 0
+  DB: 8
   poolSize: 30
   minIdleConn: 30
