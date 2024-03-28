@@ -54,6 +54,7 @@ func Chat(writer http.ResponseWriter, request *http.Request) {
 	query := request.URL.Query()
 	Id := query.Get("userId")
 	userId, _ := strconv.ParseInt(Id, 10, 64)
+	fmt.Println("[ws] 0、 chat >>>> userId", userId)
 	//msgType := query.Get("type")
 	//targetId := query.Get("targetId")
 	//	context := query.Get("context")
@@ -99,7 +100,7 @@ func sendProc(node *Node) {
 	for {
 		select {
 		case data := <-node.DataQueue:
-			fmt.Println("[ws]sendProc >>>> msg :", string(data))
+			fmt.Println("[ws]4、sendProc >>>> msg :", string(data))
 			err := node.Conn.WriteMessage(websocket.TextMessage, data)
 			if err != nil {
 				fmt.Println(err)
@@ -126,9 +127,10 @@ func recvProc(node *Node) {
 		//	currentTime := uint64(time.Now().Unix())
 		//	node.Heartbeat(currentTime)
 		//} else {
+		fmt.Println("[ws] 1、recvProc <<<<< ", string(data))
 		dispatch(data)
 		//	broadMsg(data) //todo 将消息广播到局域网
-		fmt.Println("[ws] recvProc <<<<< ", string(data))
+
 		//}
 
 	}
@@ -144,7 +146,7 @@ func dispatch(data []byte) {
 	}
 	switch msg.Type {
 	case 1: //私信
-		fmt.Println("dispatch  data :", string(data))
+		fmt.Println("[ws] 2、dispatch  data :", string(data))
 		sendMsg(msg.TargetId, data)
 	case 2: //群发
 		//sendGroupMsg(msg.TargetId, data) //发送的群ID ，消息内容
@@ -155,14 +157,14 @@ func dispatch(data []byte) {
 	}
 }
 
-func sendMsg(userId int64, msg []byte) {
+func sendMsg(targetId int64, msg []byte) {
 
 	rwLocker.RLock()
-	node, ok := clientMap[userId]
+	node, ok := clientMap[targetId]
 	rwLocker.RUnlock()
 
 	if ok {
-		fmt.Println("sendMsg >>> userID: ", userId, "  msg:", string(msg))
+		fmt.Println("[ws] 3、sendMsg >>> targetId: ", targetId, "  msg:", string(msg))
 		node.DataQueue <- msg
 	}
 
