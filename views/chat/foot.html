@@ -108,26 +108,26 @@
                         name: "视频",
                         id: "videocall"
                     },
-                    {
-                        icon: "icon-hongbao",
-                        name: "红包",
-                        id: "redpackage"
-                    },
-                    {
-                        icon: "icon-zhuanzhang",
-                        name: "转账",
-                        id: "exchange"
-                    },
-                    {
-                        icon: "icon-daohangdizhi",
-                        name: "地址",
-                        id: "address"
-                    },
-                    {
-                        icon: "icon-zhanghu",
-                        name: "名片",
-                        id: "person"
-                    }
+                    // {
+                    //     icon: "icon-hongbao",
+                    //     name: "红包",
+                    //     id: "redpackage"
+                    // },
+                    // {
+                    //     icon: "icon-zhuanzhang",
+                    //     name: "转账",
+                    //     id: "exchange"
+                    // },
+                    // {
+                    //     icon: "icon-daohangdizhi",
+                    //     name: "地址",
+                    //     id: "address"
+                    // },
+                    // {
+                    //     icon: "icon-zhanghu",
+                    //     name: "名片",
+                    //     id: "person"
+                    // }
 
                 ],
                 timer: 0,
@@ -180,6 +180,7 @@
                             suporttype = types[i];
                         }
                     }
+                    // alert(navigator.mediaDevices.getUserMedia)
                     if (!suporttype) {
                         mui.toast("编码不支持")
                         return;

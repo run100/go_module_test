@@ -30,6 +30,7 @@ func Router() *gin.Engine {
 	//用户模块
 	r.GET("/user/getUserList", service.GetUserList)
 	r.POST("/user/createUser", service.CreateUser)
+	r.POST("/attach/upload", service.Upload)
 
 	r.POST("/user/findUserByNameAndPwd", service.FindUserByNameAndPwd)
 	//发送消息
